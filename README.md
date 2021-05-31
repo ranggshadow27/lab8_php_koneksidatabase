@@ -28,6 +28,8 @@ Menghapus Barang
 ![image](https://user-images.githubusercontent.com/46300525/120141396-99271600-c206-11eb-83c0-dc0f98ea4000.png)
 ![image](https://user-images.githubusercontent.com/46300525/120141474-c4116a00-c206-11eb-976c-a6a720794014.png)
 
+Terimakasih pak
+
 
 
 
