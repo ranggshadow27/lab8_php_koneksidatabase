@@ -2,8 +2,12 @@
 include "koneksi.php";
 
 //query menampilkan data
-$database = "SELECT * FROM data_barang";
-$print = mysqli_query($conn, $database);
+$databarang = "SELECT * FROM data_barang ORDER BY `data_barang`.`id_barang` ASC";
+$tipebarang = "SELECT * FROM tipe_barang";
+$ketbarang = "SELECT * FROM keterangan_barang";
+$printa = mysqli_query($conn, $databarang);
+$printb = mysqli_query($conn, $tipebarang);
+$printc = mysqli_query($conn, $ketbarang);
 
 ?>
 
@@ -18,40 +22,51 @@ $print = mysqli_query($conn, $database);
 </head>
 <body>
     <div class="containers">
-        <h2>Data Barang</h2>
-        <hr>
-            <a href="inputpage.php"><h3>Tambah Barang</h3></a>
+        <h2>DATA BARANG</h2>
+        <hr><br>
             <div class="main">
                 <table>
                 <tr>
-                    <th>Gambar</th>
                     <th>Nama Barang</th>
                     <th>Kategori</th>
-                    <th class="mini">Harga Jual</th>
-                    <th class="mini">Harga Beli</th>
+                    <th>Keterangan</th>
+                    <th class="mini">Harga Barang</th>
                     <th class="mini">Stok</th>
-                    <th class="mini">Aksi</th>
                 </tr>
-    <?php if($print): ?>
-    <?php while($a = mysqli_fetch_array($print)): ?>
-    <tr>
-        <td><?= $a['gambar'];?></td>
-        <td><?= $a['nama_barang'];?></td>
-        <td><?= $a['kategori'];?></td>
-        <td>Rp. <?= $a['harga_beli'];?></tdclass=>
-        <td>Rp. <?= $a['harga_jual'];?></td>
-        <td><?= $a['stok'];?></td>
-        <td>
-            <a href="update.php?id=<?php echo $a['id_barang']; ?>">Edit</a> | 
-            <a href="delete.php?id=<?php echo $a['id_barang']; ?>">Hapus</a></td>
-    </tr>
-    <?php endwhile; else: ?>
-    <tr>
-        <td colspan="7">Belum ada data</td>
-    </tr>
-    <?php endif; ?>
-    </table>
-    </div>
+                <?php while($a = mysqli_fetch_array($printa)): ?>
+                <tr>
+                    <td><?= $a['nama_barang'];?></td>
+                    <td><?= $a['jenis_barang'];?></td>
+                    <td><?= $a['keterangan_barang'];?></td>
+                    <td>Rp. <?= $a['harga_barang'];?></td>
+                    <td><?= $a['stok_barang'];?></td>
+                </tr>
+                <?php endwhile;?>
+                 </table>
+            </div>
+        <br><hr><br>
+            <div class="mains">
+                <table class="tab">
+                <tr>
+                    <th>Kategori Barang</th>
+                </tr>
+                <?php while($b = mysqli_fetch_array($printb)): ?>
+                <tr>
+                    <td><?= $b['tipe_barang'];?></td>
+                </tr>
+                <?php endwhile;?>
+                </table>
+                <table class="tab">
+                <tr>
+                    <th>Keterangan Barang</th>
+                </tr>
+                <?php while($c = mysqli_fetch_array($printc)): ?>
+                <tr>
+                    <td><?= $c['keterangan_barang'];?></td>
+                </tr>
+                <?php endwhile;?>
+                </table>
+            </div>
     </div>
 </body>
 </html>

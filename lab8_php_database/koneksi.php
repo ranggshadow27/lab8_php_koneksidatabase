@@ -2,7 +2,7 @@
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db = "latihan1";
+$db = "tugas8_basisdata";
 $conn = mysqli_connect($host, $user, $pass, $db);
 if ($conn == false)
 {
